@@ -14,7 +14,7 @@
 
 #include "gtest/gtest.h"
 #include "tvm_utility/pipeline.hpp"
-#include "yolo_v2_tiny/inference_engine_tvm_config.hpp"
+#include <yolo_v2_tiny/inference_engine_tvm_config.hpp>
 
 #include <opencv2/opencv.hpp>
 
@@ -247,9 +247,10 @@ TEST(PipelineExamples, SimplePipeline)
   using PostPT = PostProcessorYoloV2Tiny;
 
   PrePT PreP{config};
-  std::string home_dir = getenv("HOME");
-  std::string autoware_data = "/autoware_data/";
-  IET IE{config, "tvm_utility", home_dir + autoware_data};
+  // std::string home_dir = getenv("HOME");
+  // std::string autoware_data = "/autoware_data/";
+  // IET IE{config, "tvm_utility", home_dir + autoware_data};
+  IET IE{config, "tvm_utility"};
   PostPT PostP{config};
 
   tvm_utility::pipeline::Pipeline<PrePT, IET, PostPT> pipeline(PreP, IE, PostP);
